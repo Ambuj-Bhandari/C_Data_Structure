@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+int *Push(int *t,int *a)
+{
+int *p=NULL;
+if(a==NULL)
+	p=(int*)calloc(1,sizeof(int));
+else
+	p=(int*)realloc(a,sizeof(int)*((*t)+2));
+
+if(p==NULL)
+	printf("No more memory is available\n\n");
+else
+{
+	(*t)++;
+	a=p;
+	printf("Enter the data\n");
+	scanf("%d",&a[(*t)]);
+}
+
+return a;
+}
+
+int *pop(int *t,int *a)
+{
+int *p=NULL;
+if(a==NULL)
+	printf("Stack Is Empty!!\n\n");
+else
+{
+	printf("Deleting the element: %d\n\n",a[*t]);
+	(*t)--;
+	if(*t!=-1)
+	{
+		p=(int*)realloc(a,sizeof(int)*(*t));
+		a=p;	
+	}
+}
+
+return a;
+}
+
+void peek(int t,int *a)
+{
+ 	if(t==-1)
+ 		printf("Stack Is Empty\n\n");
+ 	else
+	 	printf("Peeking element %d\n\n",a[t]);
+}
+void disp(int t,int *a)
+{ 
+	if(t==-1)
+		 printf("Stack Is Empty\n\n");
+	else
+	{
+		printf("The Elements of stack:\n");
+		for(int i=t;i>=0;i--)
+		printf("%d\n\n",a[i]);
+	}
+}
+
+void main()
+{
+	int *a=NULL;
+	int top=-1,ch;
+	do
+	{
+		printf("......Stack Operations......\n");
+		printf("1.Push\n2.Pop\n3.Peek\n4.Display\n5.exit\n");
+		printf("Enter your choice: ");
+		scanf("%d",&ch);
+		switch(ch)
+		{	
+			case 1: a=Push(&top,a);
+        			break;
+			case 2: a=pop(&top,a);
+        			break;
+			case 3: peek(top,a);
+        			break;
+			case 4: disp(top,a);
+        			break;
+			case 5: break;
+			default: printf("Invalid choice!!\n");
+         			break;
+		}
+	}while(ch!=5);
+}
+
