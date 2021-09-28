@@ -1,0 +1,61 @@
+#include<stdio.h>
+#define max 5
+void enque(int *f,int *r,int *a)
+{ 
+  if(*r==max-1)
+   printf("Queue IS Full.....can't enter a value\n");
+  else
+  {
+    (*r)++;
+    if(*f==-1)
+ 	(*f)++;
+    printf("Enter a element\n");
+    scanf("%d",&a[(*r)]);
+  }
+}
+   
+void deque(int *f,int *r,int *a)
+{
+   if(*f==-1||*f>*r)
+   {
+   printf("Queue is Empty....Can't delete!!\n");
+   *r=-1;  
+   *f=-1;
+    }
+ 
+   else
+   {
+     printf("Element Deleted: %d\n",a[*f]);
+     (*f)++;
+   }
+}     
+void disp(int f,int r,int *a)
+{ 
+    printf("The elements are: \n");
+    for(int i=f;i<=r;i++)
+    printf("%d\n",a[i]);
+}
+int main()
+{ 
+   int ch,f=-1,r=-1,a[max]; 
+   do
+   {  
+      printf("\n\n........Queue Operations........\n");
+      printf("Enter 1.Enque\n2.Deque\n3.Display\n4.Exit\n");
+      printf("Enter your choice\n");
+      scanf("%d",&ch);
+      switch(ch)
+      { 
+ 	case 1: enque(&f,&r,a);
+		break;
+	case 2: deque(&f,&r,a);
+		break;
+	case 3: disp(f,r,a);
+		break;
+	case 4: break;
+	default: printf("Invalid choice\n");
+		 break;
+      } 
+   }while(ch!=4);
+   return 0;
+}
