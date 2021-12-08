@@ -112,7 +112,8 @@ int main()
       { 
          printf("Enter thew data to be deleted: ");
          scanf("%d",&c);
-         root=delete(root,c);
+         root=delete(root,c); 
+         printf("Data Deleted!!\n\n");
       } 
        
       else if(ch==3)
