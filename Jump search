@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+int jump(int a[],int n,int k)
+{
+	int i=0;
+ 	if(a[i]==k)
+	{
+	    return i;
+	}
+        int b=1;
+	while(b<n)
+	{
+	    if(a[b]>=k)
+             break;
+            i++;
+ 	    b=(int)(pow(2.0,(double)i));
+            
+        } 
+        if(b>n)
+	b=n;
+	
+        //linear search. binary search can also be applied
+	for(int j=b/2;j<=b;j++)
+	{
+	   if(a[j]==k)
+		return j;
+        } 
+	return -1;
+} 
+int main()
+{ 
+   int n;
+   int k;
+   cout<<"Enter the number of elements: ";
+   cin>>n;
+   int a[n];
+  
+   for(int i=0;i<n;i++)
+   {
+	cin>>a[i];
+   }
+   cin.ignore(256,'\n');
+     cout<<"Enter a key:";
+   cin>>k;
+   int l=jump(a,n,k);
+   if(l==-1)
+      cout<<"\nAbsent\n";
+   else
+      cout<<"\npresent at location: "<<l+1<<"\n";  
+   return 0;
+}
