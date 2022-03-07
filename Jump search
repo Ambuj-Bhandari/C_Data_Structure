@@ -13,7 +13,7 @@ int jump(int a[],int n,int k)
 	    if(a[b]>=k)
              break;
             i++;
- 	    b=(int)(pow(2.0,(double)i));
+ 	    b=b*2;
             
         } 
         if(b>n)
