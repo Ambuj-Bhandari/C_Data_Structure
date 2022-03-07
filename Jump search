@@ -17,7 +17,7 @@ int jump(int a[],int n,int k)
         if(i>n)
 	i=n;
 	
-        //linear search
+        //linear search. Binary search can also be applied
 	for(int j=i/2;j<=i;j++)
 	{
 	   if(a[j]==k)
