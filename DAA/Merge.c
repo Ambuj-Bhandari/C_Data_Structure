@@ -6,26 +6,36 @@ void merg(int a[],int l,int h,int m,int *c)
 	while(i<=m&&j<=h)
 	{
 		if(a[i]<a[j])
-		   b[k++]=a[i++];
+		{
+		   b[k]=a[i];
+		   k++;
+		   i++;
+		}
 		else
-                   a[k++]=a[j++];  
+		{
+                   b[k]=a[j];
+		   k++;
+		   j++;
+		}  
                 (*c)++; 
                  
-                 
-         } 
-	if(i==m)
-	{
+         }
 		for(;j<=h;j++)
-		b[k++]=a[j];
-	}
-	else
-	{
+		{
+			b[k]=a[j];
+			k++;
+		}
 		for(;i<=m;i++)
-		b[k++]=a[i];
-	}  
+		{
+			b[k]=a[i];
+			k++;
+		}
 	int o=0;
- 	for(int f=l;f<=gih;f++)
-            a[f]=b[o++];
+ 	for(int f=l;f<=h;f++)
+	{
+            a[f]=b[o];
+	    o++;
+	}
 }
 			
 void mergS(int a[],int l,int h,int *c)
@@ -60,4 +70,3 @@ int main()
 }
 
 	
-
