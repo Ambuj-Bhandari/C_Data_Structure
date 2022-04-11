@@ -13,7 +13,7 @@ int find_max(int a[],int n)
 void CountS(int a[],int h)
 {
 	int max=find_max(a,h);
-	int b[max]={0};
+	int b[max+1]={0};
 	int c[h+1];
 	for(int i=0;i<=h;i++)
 	{
@@ -36,10 +36,12 @@ void CountS(int a[],int h)
 }
 int main()
 {
-	int a[]={5,2,7,1,2};
-	CountS(a,4);
+	int a[]={3,1,1000};
+	int n=sizeof(a)/sizeof(a[0]);
+	
+	CountS(a,n-1);
 	cout<<"The sorted array is:"<<"\n";
-	for(int i=0;i<5;i++)
+	for(int i=0;i<n;i++)
 	cout<<a[i]<<" ";
 }
   	
