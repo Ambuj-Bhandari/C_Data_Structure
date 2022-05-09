@@ -14,9 +14,16 @@ void bfs(vector<int> a[],int n,int s)
 	while(!q.empty())
 	{
 		int u=q.front();
-		
-		cout<<*it;	
-		delete u;
+		q.pop();
+		cout<<u<<" ";	
+		for(auto it=a[u].begin();it!=a[u].end();it++)
+        {
+            if(v[*it]!=1)
+            {
+                q.push(*it);
+                v[*it]=1;
+            }
+        }
 	}
 } 
 int main()
@@ -27,7 +34,7 @@ int main()
 	vector<int> a[n];
 	for(int i=1;i<n;i++)
 	{
-		addegde(a,i-1,i);
+		addedge(a,i-1,i);
 	} 
 	cout<<"Enter source node:";
 	cin>>s;
