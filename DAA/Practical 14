@@ -1,0 +1,41 @@
+#include<bits/stdc++.h> 
+using namespace std;
+vector<int> twoSum(int A[], int n,int sum)
+{ 
+    vector<int> an;
+    sort(A, A + n);
+    int l = 0;
+    int r = n - 1;
+    while (l < r) {
+        if (A[l] + A[r] == sum)
+        {
+            an.push_back(l);
+            an.push_back(r);
+            return an;
+        }
+        else if (A[l] + A[r] < sum)
+            l++;
+        else 
+            r--;
+    }
+    return an;
+}
+int main()
+{
+    int a[]={64,28,97,40,12,72,84,24,38,10};
+    int n=10;
+    vector<int> an;
+    an=twoSum(a,n,50); 
+    if(an.empty())
+    {
+        cout<<"No ssequence Found";
+    } 
+    else
+    {
+        for(int i=0;i<an.size();i++)
+        {
+            cout<<a[an[i]]<<" ";
+        }
+    } 
+    return 0;
+}
