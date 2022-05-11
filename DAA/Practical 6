@@ -18,9 +18,17 @@ int twodiff(int a[], int n,int target) {
     }
 int main()
 {
-    int a[]={1,51,84,21,31};
-    int n=5;
-    cout<<twodiff(a,n,20); 
+    int n,key;
+    cout<<"Enter the size of array:";
+    cin>>n;
+    int a[n];
+    cout<<"Enter the elements:";
+    for(int i=0;i<n;i++)
+      cin>>a[i];
+   
+   cout<<"Enter the key:";
+   cin>>key;
+    cout<<twodiff(a,n,key); 
     
     return 0;
 }
