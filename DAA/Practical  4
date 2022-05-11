@@ -8,7 +8,7 @@ int BinaryS(int a[],int key,int l,int h,int s)
         int m=l+(h-l)/2;
         if(key==a[m]) 
         {
-            r=m;;
+            r=m;
             if(s) 
             {
                 h=m-1;
