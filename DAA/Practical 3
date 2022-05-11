@@ -4,7 +4,7 @@ int jump(int a[],int n,int k)
 {
  	if(a[0]==k)
 	{
-	    return i;
+	    return 0;
 	}
          int i=1;
 	while(i<n)
