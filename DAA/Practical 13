@@ -6,7 +6,7 @@ int main()
      int array[256] = {0}; // initialize all elements to 0
 
     int n; 
-    cout<<"Enter the number of elements:"
+    cout<<"Enter the number of elements:";
     cin>>n;
 
     char str[n]; 
