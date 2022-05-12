@@ -36,16 +36,19 @@ void CountS(int a[],int h)
 }
 int main()
 {
-	int n,k;
+    int n,k; 
+    cout<<"Enter the number of elements:";
     cin>>n;
-    int a[n];
+    int a[n]; 
+    cout<<"Enter the elements:";
     for(int i=0;i<n;i++)
         cin>>a[i];
 
-	CountS(a,n-1); 
-    cin>>k;
+	CountS(a,n-1);  
+	cout<<"Enter the value of k: ";
+    	cin>>k;
 	cout<<"Kth Smallest element: "<<a[k-1]<<"\n";
-    cout<<"Kth largest element: "<<a[n-k-1]<<"\n";
+    	cout<<"Kth largest element: "<<a[n-k-1]<<"\n";
 	return 0;
 }
   	
