@@ -22,10 +22,18 @@ vector<int> twoSum(int A[], int n,int sum)
 }
 int main()
 {
-    int a[]={64,28,97,40,12,72,84,24,38,10};
-    int n=10;
-    vector<int> an;
-    an=twoSum(a,n,50); 
+    int n,k;
+    cout<<"Enter the number of elements: ";
+    cin>>n; 
+    int a[n];
+    cout<<"Enter the elements: ";
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+
+    vector<int> an; 
+    cout<<"Enter the key: ";
+    cin>>k;
+    an=twoSum(a,n,k); 
     if(an.empty())
     {
         cout<<"No ssequence Found";
