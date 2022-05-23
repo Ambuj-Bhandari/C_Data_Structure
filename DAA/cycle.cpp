@@ -10,10 +10,14 @@ bool cycle(vector<int> a[],int s,int p,int *v)
 	v[s]=1;
 	for(auto it=a[s].begin();it!=a[s].end();it++)
 	{
-		if(v[*it)==0]
+		if(v[*it]==0)
 		{
-			if(cycle(a,it,s,v))
+			if(cycle(a,*it,s,v))
 				return true;
+		} 
+		else if(*it!=p)
+		{
+		       return true;
 		}
 	}
 	return false;
@@ -37,20 +41,19 @@ int main()
 	cout<<"Enter the number of vertices:";
 	cin>>n;
 	vector<int> a[n];
-	for(int i=1;i<n;i++)
-	{
-		addedge(a,i-1,i);
-	} 
-	/*cout<<"Enter source node and destination node:";
-	cin>>s>>d;*/
+	addedge(a,1, 0);
+    addedge(a,0, 2);
+    addedge(a,2, 1);
+    addedge(a,0, 3);
+    addedge(a,3, 4);
 	
-	if(ffs(a,n))
+	if(dfs(a,n))
 	{
-		cout<<"There Exist a Path\n";
+		cout<<"There Exist a Cycle\n";
 	}
 	else
 	{
-		cout<<"There don't Exist a Path\n";
+		cout<<"There don't Exist a cycle\n";
 	}
 	return 0;
 }
