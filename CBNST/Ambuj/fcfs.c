@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include <stdlib.h>
 struct Process{
-	char pid[5];
+	int pid;
 	int at;
 	int bt;
 	int ct;
@@ -32,8 +32,8 @@ int main()
 	for(int i=0;i<n;i++)
 	{
 		
-		printf("For Process %d Enter the name of Process: ",i+1);
-		scanf("%[^\n]s", p[i].pid);
+		printf("For Process %d ",i+1);
+        p[i].pid=i+1;
 		
 		
 		printf("Enter the value of AT and BT:");
@@ -46,7 +46,7 @@ int main()
 		{
 			p[i].ct=p[i].at+p[i].bt;
 		}
-		else if(p[i-1].ct>=p[i].at)
+		else if(p[i-1].ct<=p[i].at)
 		{
 			p[i].ct=p[i].at+p[i].bt;
 		}
@@ -55,8 +55,8 @@ int main()
 			p[i].ct=p[i-1].ct+p[i].bt;
 		} 
 		
-		p[i].tat=p[i].ct-p[i].at;
-		p[i].wt=p[i].tat-p[i].bt;
+		p[i].tat= p[i].ct-p[i].at;
+		p[i].wt= p[i].tat-p[i].bt;
 		
 		swt+=p[i].wt;
 		stat+=p[i].tat; 
@@ -69,7 +69,7 @@ int main()
 	printf("PID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
 	for(int i=0;i<n;i++)
 	{
-		printf("%s\t%d\t%d\t%d\t%d\%d\%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
+		printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
 	}
 	return 0;
 }
