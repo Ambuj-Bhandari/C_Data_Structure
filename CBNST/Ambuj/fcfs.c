@@ -36,7 +36,7 @@ int main()
         p[i].pid=i+1;
 		
 		
-		printf("Enter the value of AT and BT:");
+		printf("Enter the value of AT and BT: ");
 		scanf("%d %d",&p[i].at,&p[i].bt);
 	}
 	qsort ((void *)p, n, sizeof(struct Process), compare); 
@@ -64,13 +64,15 @@ int main()
 	}
 	awt=swt/n;
 	atat=stat/n;
-	printf("Sum and Average of Waiting Time: %d %d\n",swt,awt);
-	printf("Sum and Average of Turn Around Time: %d %d\n",stat,atat); 
-	printf("PID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
+    
+	printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
 	for(int i=0;i<n;i++)
 	{
 		printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
-	}
+	} 
+
+    printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %d\n",stat,atat); 
+	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %d\n\n",swt,awt);
 	return 0;
 }
 		
