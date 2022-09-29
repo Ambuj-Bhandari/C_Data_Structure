@@ -61,7 +61,7 @@ int main()
 		
 		swt+=p[i].wt;
 		stat+=p[i].tat; 
-		p[i].rt=p[i].tat-p[i].bt;
+		p[i].rt=p[i].tat-p[i].at;
 	}
 	awt=swt/(float)n;
 	atat=stat/(float)n;
