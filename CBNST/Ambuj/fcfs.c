@@ -24,7 +24,8 @@ int compare (const void *p1, const void *p2)
 int main()
 {
 	int n;
-	int swt=0,stat=0,awt=0,atat=0;
+	int swt=0,stat=0;
+	float awt=0,atat=0;
 	printf("Enter the number of processes: ");
 	scanf("%d",&n);
 	struct Process p[n];
@@ -60,10 +61,10 @@ int main()
 		
 		swt+=p[i].wt;
 		stat+=p[i].tat; 
-		p[i].rt=p[i].ct-p[i].bt;
+		p[i].rt=p[i].tat-p[i].bt;
 	}
-	awt=swt/n;
-	atat=stat/n;
+	awt=swt/(float)n;
+	atat=stat/(float)n;
     
 	printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
 	for(int i=0;i<n;i++)
@@ -71,8 +72,7 @@ int main()
 		printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
 	} 
 
-    printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %d\n",stat,atat); 
-	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %d\n\n",swt,awt);
+    printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %6.2f\n",stat,atat); 
+	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %6.2f\n\n",swt,awt);
 	return 0;
 }
-		
