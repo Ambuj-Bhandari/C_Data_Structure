@@ -8,6 +8,7 @@ struct Process{
 	int tat;
 	int wt;
 	int rt;
+	int st;
 };
 int compare (const void *p1, const void *p2)
 {
@@ -24,8 +25,8 @@ int compare (const void *p1, const void *p2)
 int main()
 {
 	int n;
-	int swt=0,stat=0;
-	float awt=0,atat=0;
+	int swt=0,stat=0,awt=0,atat=0,cyclelen=0;
+	float cpu_ut,thro;
 	printf("Enter the number of processes: ");
 	scanf("%d",&n);
 	struct Process p[n];
@@ -41,19 +42,24 @@ int main()
 		scanf("%d %d",&p[i].at,&p[i].bt);
 	}
 	qsort ((void *)p, n, sizeof(struct Process), compare); 
+	int idle=0;
 	for(int i=0;i<n;i++)
 	{
 		if(i==0)
 		{
 			p[i].ct=p[i].at+p[i].bt;
+			p[i].st=p[i].at;
 		}
 		else if(p[i-1].ct<=p[i].at)
 		{
 			p[i].ct=p[i].at+p[i].bt;
+			idle+=p[i].at-p[i-1].ct;
+			p[i].st=p[i].at;
 		}
 		else
 		{
 			p[i].ct=p[i-1].ct+p[i].bt;
+			p[i].st=p[i-1].ct;
 		} 
 		
 		p[i].tat= p[i].ct-p[i].at;
@@ -61,10 +67,14 @@ int main()
 		
 		swt+=p[i].wt;
 		stat+=p[i].tat; 
-		p[i].rt=p[i].tat-p[i].bt;
+		p[i].rt=p[i].st-p[i].at;
 	}
-	awt=swt/(float)n;
-	atat=stat/(float)n;
+	awt=swt/n;
+	atat=stat/n;
+
+	cyclelen=p[n-1].ct-p[0].st;
+	cpu_ut=(cyclelen-idle)*100;
+	thro=(float)n/cyclelen;
     
 	printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
 	for(int i=0;i<n;i++)
@@ -72,7 +82,9 @@ int main()
 		printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
 	} 
 
-    printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %6.2f\n",stat,atat); 
-	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %6.2f\n\n",swt,awt);
+    printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %d\n",stat,atat); 
+	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %d\n",swt,awt);
+	printf("CPU Utilization: %6.2f\nThroughput: %f\n",cpu_ut,thro);
 	return 0;
 }
+		
