@@ -26,7 +26,7 @@ int main()
 {
 	int n;
 	int swt=0,stat=0,awt=0,atat=0,cyclelen=0;
-	float cpu_ut,thro;
+	float cpu_ut=0,thro=0;
 	printf("Enter the number of processes: ");
 	scanf("%d",&n);
 	struct Process p[n];
@@ -73,7 +73,7 @@ int main()
 	atat=stat/n;
 
 	cyclelen=p[n-1].ct-p[0].st;
-	cpu_ut=(cyclelen-idle)*100;
+	cpu_ut=((float)(cyclelen-idle)/cyclelen)*100;
 	thro=(float)n/cyclelen;
     
 	printf("\nPID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
@@ -84,7 +84,7 @@ int main()
 
     printf("\nSum of Turn Around Time: %d\nAverage of Turn Around Time: %d\n",stat,atat); 
 	printf("Sum of Waiting Time: %d\nAverage of Waiting Time: %d\n",swt,awt);
-	printf("CPU Utilization: %6.2f\nThroughput: %f\n",cpu_ut,thro);
+	printf("CPU Utilization: %6.2f% \nThroughput: %f\n",cpu_ut,thro);
 	return 0;
 }
 		
