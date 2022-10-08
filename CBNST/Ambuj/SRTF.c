@@ -26,7 +26,8 @@ int compare (const void *p1, const void *p2)
 }
 int main()
 {
-	int n;
+	int n,min=INT_MAX,pos=-1,t=0,prev=0,comp=0,idle=0;
+	int rem[n];
 	printf("Enter the number of processes: ");
 	scanf("%d",&n);
 	struct Process p[n];
@@ -42,11 +43,12 @@ int main()
 		scanf("%d %d",&p[i].at,&p[i].bt);
 	}
 	qsort ((void *)p, n, sizeof(struct Process), compare); 
-	int tt=0,rem[n];
-	int min=INT_MAX,pos=0,t=0,flag=0,comp=0;
+	
+	
 	for(int i=0;i<n;i++)
 	{
 		rem[i]=p[i].bt;
+		p[i].tat=p[i].wt=0;
 	}
 	while(comp<n)
 	{
@@ -56,37 +58,47 @@ int main()
 			{
 				min=rem[i];
 				pos=i;
-				flag=1;
 			}
 		}
-		if(flag==0)
+		
+		if(pos!=-1)
+		{
+			if(rem[pos]==p[pos].bt)
+			{
+				p[pos].st=t;
+				idle+=p[pos].st-prev;
+			}
+			 t++;
+			prev=t;
+			rem[pos]--;
+			if(rem[pos]==0)
+			{
+				comp++;
+           		p[pos].ct=t;
+				p[pos].tat=p[pos].ct-p[pos].at;
+				p[pos].wt=p[pos].tat-p[pos].bt; 
+				p[pos].rt=p[pos].st-p[pos].at;
+        	} 
+		}
+		else
 		{
 			t++;
-			continue;
 		}
-		rem[pos]--;
 		min=rem[pos];
 		if(min==0)
 			min=INT_MAX;
-		
-		if(rem[pos]==0)
-		{
-			comp++;
-            	flag=0;
-           	p[pos].ct=t+1;
-  
-               p[pos].wt=p[pos].ct-p[pos].bt-p[pos].at;
-  
-            if (p[pos].wt < 0)
-                p[pos].wt=0;
-        } 
-        t++;
 	}
-	printf("PID\tAT\tBT\tCT\tWT\tRemT\n");
+
+	float cpu_ut=0,thro=0,cyclelen=0;
+	cyclelen=p[n-1].ct-p[0].st;
+	cpu_ut=((cyclelen-idle)/cyclelen)*100;
+	thro=n/cyclelen;
+	printf("PID\tAT\tBT\tCT\tTAT\tWT\tRT\n");
 	for(int i=0;i<n;i++)
 	{
-		printf("P%d\t%d\t%d\t%d\t%d\t%d\n",i+1,p[i].at,p[i].bt,p[i].ct,p[i].wt,rem[i]);
-	}
+		printf("P%d\t%d\t%d\t%d\t%d\t%d\t%d\n",p[i].pid,p[i].at,p[i].bt,p[i].ct,p[i].tat,p[i].wt,p[i].rt);
+	} 
+	printf("CPU Utilization: %6.2f%\nThroughput: %6.3f\n",cpu_ut,thro);
 	return 0;	
 			
 }
