@@ -27,10 +27,10 @@ int compare (const void *p1, const void *p2)
 int main()
 {
 	int n,min=INT_MAX,pos=-1,t=0,prev=0,comp=0,idle=0;
-	int rem[n];
 	printf("Enter the number of processes: ");
 	scanf("%d",&n);
 	struct Process p[n];
+	int rem[n];
 	
 	for(int i=0;i<n;i++)
 	{
