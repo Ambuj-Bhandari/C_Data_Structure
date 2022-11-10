@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 struct info{
 	int max[100],allocated[100],need[100];
 }; 
@@ -16,18 +17,19 @@ void input(struct info *p,int *a,int n,int r)
 			scanf("%d",&p[i].allocated[j]);
 			
 			p[i].need[j]=p[i].max[j]-p[i].allocated[j];
-		}
+		} 
 	}
-	printf("Enter the Available Resources: ");
+	printf("\nEnter the Available Resources: ");
 	for(int i=0;i<r;i++)
 		scanf("%d",&a[i]);
+	printf("\n");
 } 
 void print(struct info *p,int *a,int n,int r)
 {
 	printf("ProcessID\tMax\tAllocated\tNeed\n");
 	for(int i=0;i<n;i++)
 	{
-		printf("P %d\t\t",i);
+		printf("P %d\t\t",i+1);
 		for(int j=0;j<r;j++)
 		{
 			printf("%d",p[i].max[j]);
@@ -43,7 +45,7 @@ void print(struct info *p,int *a,int n,int r)
 			printf("%d",p[i].need[j]);
 		}
 		
-		printf("\n");
+		printf("\n\n");
 	}
 } 
 int main()
@@ -59,12 +61,53 @@ int main()
 	struct info p[n];
 	input(p,avail,n,r);
 	
-	print(p,avail,n,r);
+	int fin[n],seq[n],nop=0;
+	for(int i=0;i<n;i++){
+		fin[i]=0;
+		seq[i]=-1;
+	}
+	while(1)
+	{
+		for(int i=0;i<n;i++)
+		{
+			if(fin[i]!=1)
+			{
+				int j=0;
+				for(;j<r;j++)
+				{
+					if(p[i].need[j]>avail[j])
+						break;
+				}
+				if(j==r)
+				{
+					for(int j=0;j<r;j++)
+					{
+						avail[j]+=p[i].allocated[j];
+					} 
+					fin[i]=1;
+					seq[nop++]=i+1;
+				} 
+			}
+		}
+		if(nop==n)
+			break;
+	}
+	print(p,avail,n,r); 
+	for(int i=0;i<n;i++)
+	{
+		if(seq[i]==-1)
+		{
+			printf("Not a Safe Sequencing...Deadlock Present\n");
+			exit(0);
+		}
+	} 
+	printf("No Deadlock Present....Safe Sequencing!!\n");
+	printf("Process Sequence is: ");
+	for(int i=0;i<n;i++)
+	{
+		printf("%d ",seq[i]);
+	}
+	printf("\n");
 	return 0;
 }
-	
-	
-	
-	
-	
 	
