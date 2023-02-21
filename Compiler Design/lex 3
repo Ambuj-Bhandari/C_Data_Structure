@@ -24,4 +24,6 @@ yywrap(){}
 main(int argc,char *argv[])
 {
 	yylex();
+	printf("Total Number of IDentifiers: %d\n",count);
+	return 0;
 }
