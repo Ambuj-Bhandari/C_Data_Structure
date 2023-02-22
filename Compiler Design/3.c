@@ -16,7 +16,7 @@ $ {return 0;}
     [\t\n]+
     ("int")|("float")|("char")|("case")|("default")|("if")|("for")|("printf")|("scanf") {printf("%s is a keyword\n",yytext);}
 
-    {id} {printf("%s is a identifier\n",yytext); count++;}
+    {id} {printf("%s is a identifier\n",yytext);count++;}
 
     {notid} {printf("%s is a identifier\n",yytext);}
 
