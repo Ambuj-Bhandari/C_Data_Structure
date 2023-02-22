@@ -6,9 +6,9 @@
 %}
 
 %%
-    \n {ln++; wr++; tot++;}
-    [\t ' '] {tot++; wr++;}
-    [" "] {sp++; wr++;}
+    \n {ln++; wr++;tot++;}
+    [\t ' '] {tot++;wr++;}
+    [" "] {sp++;wr++;}
 %%
 yywrap(){}
 int main(int argc,char *argv[])
