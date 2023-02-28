@@ -3,10 +3,10 @@
 
 %}
 
-DIGIT [0=9]
+DIGIT [0-9]
 %%
-    {DIGIT}* {ECHO;printf("Integer\n");}  //ECHO prints the currently enetered number
-    {DIGIT}* ?\{DIGIT}* {ECHO;printf("Float\n");} /* ?\ means that the left hand side may or maynot be present*/
+{DIGIT}* {ECHO;printf("Integer\n");}   //ECHO prints the currently enetered number
+{DIGIT}*?\.{DIGIT}* {ECHO;printf("Float\n");} /* ?\. means that the left hand side may or maynot be present*/
 %%
 
 yywrap(){}
