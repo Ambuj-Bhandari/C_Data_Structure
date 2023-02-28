@@ -1,23 +1,16 @@
-// Lex program to replace white spaces of 'INPUT.txt' by a single blank character into 'OUTPUT.txt'
-//Count lines,tabs,spaces and characters
+// Replace tab spaxce with a single space
 %{
-    //#include<stdio.h>
-    int ln=0,wr=0,sp=0,tot=0;
 %}
-
-Space [\t]
-emptylines \n
 %%
-   {Space}+ printf(" ");
-   {emptylines}+ printf("\n");
-   .ECHO;     // prints the o/p file
+[ \n\t]+ fprintf(yyout," ");
+. fprintf(yyout,"%s",yytext);
 %%
 yywrap(){}
-int main(int argc,char *argv[])
+main()
 {
-    extern FILE *yyin;
-    yyin=fopen(argv[1],"r");
-
-    yylex();
-    return 0;
+extern FILE *yyin,*yyout;
+yyin=fopen("Input.txt","r");
+yyout=fopen("Output.txt","w");
+yylex();
+return 0;
 }
