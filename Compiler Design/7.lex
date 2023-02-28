@@ -1,3 +1,4 @@
+//lex program to remove C comments (single and multi-line)
 %{
 %}
 %%
