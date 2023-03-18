@@ -28,18 +28,16 @@ UNARY"++"|"--"
 BLOCK_BEGINS"{"
 BLOCK_ENDS"}"
 LOPERATORS"&"|"|"|"&&"|"||"|"~"|">"|"<"|">="|"<+"|"=="
-
 %%
-"while"|"if"|"else" {n++;printf("\t keywords: %s",yytext);}
-"int"|"float" {n++;printf("\t keywords: %s",yytext);}
-[a-zA-Z_][a-zA-Z0-9_]* {n++;printf("\t Identifier: %s",yytext);}
-"<="|"=="|"="|"++"|"-"|"*"|"+"|"("|")"|"," {n++;printf("\t Operators: %s",yytext);}
-"{"|"}"|";" {n++;printf("\t Seperators: %s",yytext);}
--?[0-9]+"."[0-9]+ {n++;printf("\t Float: %s",yytext);}
--?[0-9]+ {n++;printf("\t Integer: %s",yytext);}
-. ;
+"while"|"if"|"else" {n++;printf("keywords: %s\n",yytext);}
+"int"|"float" {n++;printf("keywords: %s\n",yytext);}
+[a-zA-Z_][a-zA-Z0-9_]* {n++;printf("Identifier: %s\n",yytext);}
+"<="|"=="|"="|"++"|"-"|"*"|"+"|"("|")"|"||" {n++;printf("Operators: %s\n",yytext);}
+"{"|"}"|";"|"," {n++;printf("Seperators: %s\n",yytext);}
+-?[0-9]+"."[0-9]+ {n++;printf("Float: %s\n",yytext);}
+-?[0-9]+ {n++;printf("Integer: %s\n",yytext);}
+[$] return 0;
 %%
-
 yywrap(){}
 main()
 {
