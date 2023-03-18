@@ -4,14 +4,13 @@
 %}
 %%
 "<"[^>]*">" fprintf(yyout,"%s",yytext);
-. ;
+[$] return 0;
 %%
 yywrap(){}
 
 main(int args,char **argv)
 {
 extern FILE *yyin,*yout;
-yyin=fopen(argv[1],"r");
-yyout=fopen(argv[2],"w");
+yyout=fopen("Output.txt","w");
 yylex();
 }
