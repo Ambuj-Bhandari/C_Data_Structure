@@ -14,7 +14,7 @@ main(int argc,cgar *agrv[])
 
 
 /*Format CONSIDERED
-% S A B C F
+%s S A B C F
 %%
 <S>\n printf(" Aceepetd\n"); BEGIN S;
 <S>a BEGIN A;
@@ -34,10 +34,12 @@ main(int argc,cgar *agrv[])
 <S>[^ab\n] BEGIN F;
 <F>[^\n] BEGIN F;
 <F>[\n] BEGIN S; printf("INVALID ARGUMENT\n");
-. ;
+[$] return 0; ;
 %%
+yywrap(){}
 main()
 {
-
-
-
+printf("Enter the string of a and b only\n");
+yylex();
+return 0;
+}
