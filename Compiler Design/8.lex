@@ -5,6 +5,7 @@
 %%
 "<"[^>]*">" fprintf(yyout,"%s",yytext);
 [$] return 0;
+. ;
 %%
 yywrap(){}
 
