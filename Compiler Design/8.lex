@@ -7,11 +7,12 @@
 [$] return 0;
 . ;
 %%
-yywrap(){}
+int yywrap(){}
 
 main(int args,char **argv)
 {
 extern FILE *yyin,*yout;
-yyout=fopen("Output.txt","w");
+yyin=fopen("Input.html","r");
+yyout=fopen("Output.html","w");
 yylex();
 }
