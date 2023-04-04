@@ -1,20 +1,24 @@
 //Count lines,tabs,spaces and characters
 %{
-    //#include<stdio.h>
-    int ch=0,bl=0,ln=0,wr=0;
+   int cc=0 , wc=0 , sc=0 , tc=0 , lc=0;
 %}
 
 %%
-    [\n] {ln++;wr++;}
-    [\t] {bl++;wr++;}
-    [" "] {bl++;wr++;}
-    [^\n\t] {ch++;}
-    END {return 0;}
+[a-zA-Z0-9][" "] {cc++;wc++;sc++;}
+[a-zA-Z0-9][\t] {cc++;wc++;tc++;}
+[a-zA-Z0-9][\n] {cc++;wc++;lc++;}
+[a-zA-Z0-9] {cc++;}
+[" "] {sc++;}
+[\t] {tc++;}
+[\n] {lc++;}
+END return 0;
 %%
-yywrap(){}
-int main(int argc,int **argv)
+
+yywrap(){ }
+int main(int argc , int *argv)
 {
-    yylex();
-    printf("Total charcters: %d\n Blanks: %d\n Words: %d\n Lines:%d\n",ch,bl,wr,ln);
-    return 0;
+   
+yylex();
+printf("Total characters: %d\n Blanks: %d\n words:%d\n Lines:%d\n tab space:%d\n" , cc,sc,wc,lc,tc);
+   return 0;
 }
