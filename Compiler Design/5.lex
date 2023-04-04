@@ -2,7 +2,7 @@
 %{
 %}
 %%
-[ \n\t]+ fprintf(yyout," ");
+[\t]+ fprintf(yyout," ");
 . fprintf(yyout,"%s",yytext);
 %%
 yywrap(){}
