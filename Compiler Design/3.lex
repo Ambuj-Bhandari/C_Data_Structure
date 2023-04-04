@@ -9,7 +9,7 @@ op [+-*/]
 letter [a-zA-Z]
 digit [0-9]
 id {letter}*|({letter}{digit})+
-notid ({digit}{letter}+)
+notid ({digit}{letter}+)|({digit})+
 
 %%
 [\t\n]+
