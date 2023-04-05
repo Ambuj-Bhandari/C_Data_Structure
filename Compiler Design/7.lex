@@ -51,7 +51,7 @@ DELIMITER [;:\t\n()"]
 IDENTIFIER [a-zA-Z]{TEXT_NUMBERS}*|[a-zA-Z]{TEXT_NUMBERS}*[[{NUMBER}+]]
 FORMAT_SPECIFIER "%"{TEXT_NUMBERS}+
 FILE "<"{IDENTIFIER}.h">"
-COMMENT "/*"[a-zA-Z0-9 \t\n;.~!@#$%^&*()_+=<>?:"{}]*"*/"
+COMMENT "/*"[a-zA-Z0-9 \t\n;.~!@#$%^&*()_+=<>?:"{}]*"*/" /*
 AOPERATORS "+"|"-"|"*"|"/"|"="
 BLOCK_BEGINS "{"
 BLOCK_ENDS "}"
