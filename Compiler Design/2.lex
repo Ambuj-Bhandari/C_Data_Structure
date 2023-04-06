@@ -15,3 +15,25 @@ int main(int argc, char const *argv[])
     yylex();
     return 0;
 }
+
+
+//runs more cases
+
+%{
+%}
+
+DIGIT [0-9]
+
+%%
+[-+]?{DIGIT}+ {ECHO;printf(" is an Integer.");}
+[-+]*{DIGIT}*?"."{DIGIT}+ {ECHO;printf(" is a Floating Point.");}
+. {ECHO;printf(" is not a number.");}
+%%
+
+int yywrap(){}
+
+int main()
+{
+    yylex();
+    return 0;
+}
