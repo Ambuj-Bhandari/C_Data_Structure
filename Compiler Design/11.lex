@@ -1,3 +1,4 @@
+// DFA in lexto IDENTIFY and print Integer and float Constants and identifier
 %{
 %}
 %s A B C D Y Z
