@@ -1,3 +1,4 @@
+// DFA in lex which accepts string containing third last charcter 'a over input alphabet {a,b}
 %{
 %}
 
