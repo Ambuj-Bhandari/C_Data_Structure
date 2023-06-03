@@ -1,8 +1,9 @@
 %{
 #include<stdio.h>
+#include<stdlib.h>
 void yyerror(char *);
 int yylex();
-int sym[26];
+int sym[26]={0};
 %}
 %token id digit
 %left '+' '-'
@@ -17,7 +18,8 @@ E: digit {$$=$1;}
     |E '+' E {$$=$1+$3;}
     |E '-' E {$$=$1-$3;}
     |E '*' E {$$=$1*$3;}
-    |E '/' E {$$=$1/$3;}
+    |E '/' E {if($3) $$=$1/$3;
+              else{yyerror("Error.. Division By Zero!!\n");}}
     | '(' E ')'  {$$=$2;}
     ;
 %%
@@ -30,4 +32,5 @@ int main()
 void yyerror(char *msg)
 {
    fprintf(stderr,"%s\n", msg);
+   exit(0);
 }
