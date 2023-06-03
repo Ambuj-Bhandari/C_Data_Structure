@@ -1,4 +1,4 @@
-// YAAC code for + - * and / of integer with precedence
+// YAAC code to recognize valid arithematic expression with operators(+ , -, *, /)
 %{
   #include<stdio.h>
   #include<stdlib.h>
