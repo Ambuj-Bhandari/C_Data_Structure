@@ -1,6 +1,7 @@
 %{
 #include "y.tab.h"
-extern int yyval;
+#include<stdio.h>
+#include<stdlib.h>
 %}
 
 %%
@@ -8,9 +9,8 @@ extern int yyval;
 [0-9]+ {yylval=atoi(yytext); return digit;}
 [-+()=/*\n] {return *yytext;}
 [ \t] ;
-. yyerror("invalid character");
+. {printf("Invalid character\n"); exit(0);}
 %%
 int yywrap(){
 return 1;
 }
-
