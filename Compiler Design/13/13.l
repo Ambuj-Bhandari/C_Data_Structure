@@ -1,6 +1,5 @@
 %{
 #include<stdio.h>
-int yylval;
 #include "y.tab.h"
 %}
 %%
@@ -11,3 +10,4 @@ int yylval;
 int yywrap(){
 return 1;
 }
+
